@@ -55,17 +55,10 @@
 	};
 
 	function onPayClicked() {
-	  var methodData = [{
-	    supportedMethods: "basic-card",
+	  var supportedInstruments = [{
+	    supportedMethods: ['basic-card'],
 	    data: {
-	      supportedNetworks: ["visa", "mastercard"],
-	      supportedTypes: ["debit", "credit"]
-	    }
-	  }, {
-	    supportedMethods: "https://example.com/bobpay",
-	    data: {
-	      merchantIdentifier: "XXXX",
-	      bobPaySpecificField: true
+	      supportedNetworks: ['visa', 'mastercard', 'amex', 'discover', 'diners', 'jcb', 'unionpay']
 	    }
 	  }];
 
@@ -83,7 +76,7 @@
 	    }
 	  };
 
-	  new PaymentRequest(methodData, details).show().then(sendPaymentToServer).then(finishPayment).catch(errorHandler);
+	  new PaymentRequest(supportedInstruments, details).show().then(sendPaymentToServer).then(finishPayment).catch(errorHandler);
 	}
 
 	function sendPaymentToServer(payment) {

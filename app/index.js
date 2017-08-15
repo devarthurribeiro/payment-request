@@ -8,7 +8,7 @@ const errorHandler = err => console.error('Uh oh, something bad happened.', err)
 
 function onPayClicked () {
   let supportedInstruments = [{
-        supportedMethods: ['basic-card']
+        supportedMethods: ['basic-card'],
         data: {
           supportedNetworks: [
             'visa', 'mastercard', 'amex', 'discover',
