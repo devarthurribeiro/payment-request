@@ -7,9 +7,22 @@ let pay = document
 const errorHandler = err => console.error('Uh oh, something bad happened.', err)
 
 function onPayClicked () {
-  let supportedInstruments = [{
-    supportedMethods: ['visa', 'mastercard']
-  }]
+  const methodData = [
+  {
+    supportedMethods: "basic-card",
+    data: {
+      supportedNetworks: ["visa", "mastercard"],
+      supportedTypes: ["debit", "credit"],
+    },
+  },
+  {
+    supportedMethods: "https://example.com/bobpay",
+    data: {
+      merchantIdentifier: "XXXX",
+      bobPaySpecificField: true,
+    },
+  },
+];
 
   let details = {
     displayItems: [
@@ -28,7 +41,7 @@ function onPayClicked () {
     }
   }
 
-  new PaymentRequest(supportedInstruments, details)
+  new PaymentRequest(methodData, details)
     .show()
     .then(sendPaymentToServer)
     .then(finishPayment)
@@ -65,4 +78,3 @@ function finishPayment (paymentObject) {
 
   pre.innerHTML = JSON.stringify(paymentObject)
 }
-
